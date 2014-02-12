@@ -24,6 +24,7 @@
 		92D493A318AA81960066D0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937E18AA81960066D0AC /* UIKit.framework */; };
 		92D493AB18AA81960066D0AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92D493A918AA81960066D0AC /* InfoPlist.strings */; };
 		92D493AD18AA81960066D0AC /* LappyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D493AC18AA81960066D0AC /* LappyTests.m */; };
+		92D493B818AB73840066D0AC /* flappy.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D493B718AB73840066D0AC /* flappy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		92D493A818AA81960066D0AC /* LappyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LappyTests-Info.plist"; sourceTree = "<group>"; };
 		92D493AA18AA81960066D0AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92D493AC18AA81960066D0AC /* LappyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LappyTests.m; sourceTree = "<group>"; };
+		92D493B718AB73840066D0AC /* flappy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flappy.png; path = img/flappy.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		92D4938218AA81960066D0AC /* Lappy */ = {
 			isa = PBXGroup;
 			children = (
+				92D493B618AB73770066D0AC /* images */,
 				92D4938B18AA81960066D0AC /* AppDelegate.h */,
 				92D4938C18AA81960066D0AC /* AppDelegate.m */,
 				92D4938E18AA81960066D0AC /* Main.storyboard */,
@@ -128,7 +131,6 @@
 				92D4939218AA81960066D0AC /* ViewController.m */,
 				92D4939418AA81960066D0AC /* MyScene.h */,
 				92D4939518AA81960066D0AC /* MyScene.m */,
-				92D4939718AA81960066D0AC /* Spaceship.png */,
 				92D4939918AA81960066D0AC /* Images.xcassets */,
 				92D4938318AA81960066D0AC /* Supporting Files */,
 			);
@@ -162,6 +164,15 @@
 				92D493A918AA81960066D0AC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92D493B618AB73770066D0AC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				92D4939718AA81960066D0AC /* Spaceship.png */,
+				92D493B718AB73840066D0AC /* flappy.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +255,7 @@
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
 				92D4939818AA81960066D0AC /* Spaceship.png in Resources */,
 				92D4939018AA81960066D0AC /* Main.storyboard in Resources */,
+				92D493B818AB73840066D0AC /* flappy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

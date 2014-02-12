@@ -5,5 +5,8 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : SKScene
+@property CGFloat screenWidth;
+@property CGFloat screenHeight;
 
+@property SKSpriteNode *bird;
 @end
