@@ -9,7 +9,7 @@
 
 -(id)initWithSize:(CGSize)size {    
 	if (self = [super initWithSize:size]) {
-			/* Setup your scene here */
+		/* Setup your scene here */
 
 		self.backgroundColor = [SKColor colorWithRed:255 green:255 blue:255 alpha:1.0];
 		CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -17,7 +17,7 @@
 		_screenHeight = screenRect.size.height;
 
 		// World Gravity
-		[self.physicsWorld setGravity:CGVectorMake(0.0, -3.0)];
+		[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
 
 		// Create bird
 		_bird = [SKSpriteNode spriteNodeWithImageNamed:@"flappy"];
@@ -31,6 +31,7 @@
 		_bird.xScale = 0.20;
 		_bird.yScale = 0.20;
 		_bird.position = CGPointMake((_screenWidth / 2) - 65, _screenHeight / 2);
+		
 		[self addChild:_bird];
 	}
 	return self;
@@ -40,7 +41,7 @@
 	/* Called when a touch begins */
 
 	for (UITouch *touch in touches) {
-		[_bird.physicsBody applyImpulse:CGVectorMake(0, 1000)];
+		[_bird.physicsBody applyImpulse:CGVectorMake(0, 10000.f)];
 //		CGPoint location = [touch locationInNode:self];
 //		SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
 //		sprite.position = location;
@@ -52,7 +53,11 @@
 
 -(void)update:(CFTimeInterval)currentTime {
 	/* Called before each frame is rendered */
-	
+
+	// Maximize upwards speed
+	float yVelocity = CLAMP(_bird.physicsBody.velocity.dy, -1 * MAXFLOAT, 250.f);
+	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
+
 	// If bird hits bottom..
 	if(_bird.position.y <= _bird.size.height) {
 		_bird.physicsBody.affectedByGravity = NO;
