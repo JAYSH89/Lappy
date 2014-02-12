@@ -5,7 +5,9 @@
 
 #import "MyScene.h"
 
-@implementation MyScene
+@implementation MyScene {
+	NSTimeInterval sinceTouch;
+}
 
 -(id)initWithSize:(CGSize)size {    
 	if (self = [super initWithSize:size]) {
@@ -42,6 +44,8 @@
 
 	for (UITouch *touch in touches) {
 		[_bird.physicsBody applyImpulse:CGVectorMake(0, 10000.f)];
+		[_bird.physicsBody applyAngularImpulse:1000.f];
+		sinceTouch = 0.f;
 //		CGPoint location = [touch locationInNode:self];
 //		SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
 //		sprite.position = location;
@@ -57,6 +61,20 @@
 	// Maximize upwards speed
 	float yVelocity = CLAMP(_bird.physicsBody.velocity.dy, -1 * MAXFLOAT, 250.f);
 	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
+
+	// Rotation of the bird
+	sinceTouch += currentTime;
+
+	_bird.zRotation = CLAMP(_bird.zRotation, -30.f, 90.f);
+
+	if (_bird.physicsBody.allowsRotation) {
+		float angularVelocity = CLAMP(_bird.physicsBody.angularVelocity, -2.f, 1.f);
+		_bird.physicsBody.angularVelocity = angularVelocity;
+	}
+
+	if ((sinceTouch > 0.5f)) {
+		[_bird.physicsBody applyAngularImpulse:-4000.f * currentTime];
+	}
 
 	// If bird hits bottom..
 	if(_bird.position.y <= _bird.size.height) {
