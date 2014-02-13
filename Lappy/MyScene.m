@@ -5,10 +5,13 @@
 
 #import "MyScene.h"
 #import "FMMParallaxNode.h"
+@import AVFoundation;
 
 @implementation MyScene {
 //	NSTimeInterval sinceTouch;
+	AVAudioPlayer* jumpSound;
 	FMMParallaxNode *background;
+	BOOL gameStarted;
 	BOOL GameOver;
 }
 
@@ -20,6 +23,7 @@
 		_screenHeight = screenRect.size.height;
 
 		// GameOver is false
+		gameStarted = YES;
 		GameOver = NO;
 
 		// Adding background
@@ -35,20 +39,25 @@
 		[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
 
 		// Create bird
-		_bird = [SKSpriteNode spriteNodeWithImageNamed:@"flappy"];
+		_bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird1"];
 
 		// Adding physics body
 		_bird.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_bird.frame.size.width];
 		_bird.physicsBody.affectedByGravity = YES;
 		_bird.physicsBody.dynamic = YES;
 
-		// Scaling the bird down + Default position
-		_bird.xScale = 0.20;
-		_bird.yScale = 0.20;
+		// Default position
 		_bird.position = CGPointMake((_screenWidth / 2) - 85, _screenHeight / 2);
 		
 		// Adding bird to the layer
 		[self addChild:_bird];
+		
+		// Sound
+		NSError *error;
+		NSURL *backgroundMusicURL = [[NSBundle mainBundle] URLForResource:@"jump" withExtension:@"wav"];
+		jumpSound = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
+//		jumpSound.numberOfLoops = 1;
+		[jumpSound prepareToPlay];
 	}
 	return self;
 }
@@ -59,23 +68,16 @@
 	for (UITouch *touch in touches) {
 		// Moving bird upwards when you tap screen
 		[_bird.physicsBody applyImpulse:CGVectorMake(0, 10000.f)];
+		[_bird setTexture:[SKTexture textureWithImageNamed:@"bird2"]];
 
-		// Rotating bird upwards when you tap screen
-//		[_bird.physicsBody applyAngularImpulse:1000.f];
-//		sinceTouch = 0.f;
-
-//		CGPoint location = [touch locationInNode:self];
-//		SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-//		sprite.position = location;
-//		SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-//		[sprite runAction:[SKAction repeatActionForever:action]];
-//		[self addChild:sprite];
+		[NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(openWings) userInfo:nil repeats:NO];
+		[jumpSound play];
 	}
 }
 
 -(void)update:(CFTimeInterval)currentTime {
 	/* Called before each frame is rendered */
-	
+
 	// Updating background scrolling
 	if(!GameOver) {
 		[background update:currentTime];
@@ -85,27 +87,16 @@
 	float yVelocity = CLAMP(_bird.physicsBody.velocity.dy, -1 * MAXFLOAT, 250.f);
 	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
 
-	// Rotation of the bird
-//	sinceTouch += currentTime;
-//
-//	_bird.zRotation = CLAMP(_bird.zRotation, -30.f, 90.f);
-//
-//	if (_bird.physicsBody.allowsRotation) {
-//		float angularVelocity = CLAMP(_bird.physicsBody.angularVelocity, -2.f, 1.f);
-//		_bird.physicsBody.angularVelocity = angularVelocity;
-//	}
-//
-//	if ((sinceTouch > 0.5f)) {
-//		[_bird.physicsBody applyAngularImpulse:-4000.f * currentTime];
-//	}
-
 	// If bird hits bottom..
 	if(_bird.position.y <= _bird.size.height) {
 		_bird.physicsBody.affectedByGravity = NO;
 		_bird.physicsBody.dynamic = NO;
 		GameOver = YES;
 	}
-	
+}
+
+- (void)openWings {
+	[_bird setTexture:[SKTexture textureWithImageNamed:@"bird1"]];
 }
 
 @end

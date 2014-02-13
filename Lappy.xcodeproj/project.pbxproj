@@ -17,16 +17,18 @@
 		92D4939018AA81960066D0AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D4938E18AA81960066D0AC /* Main.storyboard */; };
 		92D4939318AA81960066D0AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4939218AA81960066D0AC /* ViewController.m */; };
 		92D4939618AA81960066D0AC /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4939518AA81960066D0AC /* MyScene.m */; };
-		92D4939818AA81960066D0AC /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D4939718AA81960066D0AC /* Spaceship.png */; };
 		92D4939A18AA81960066D0AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D4939918AA81960066D0AC /* Images.xcassets */; };
 		92D493A118AA81960066D0AC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D493A018AA81960066D0AC /* XCTest.framework */; };
 		92D493A218AA81960066D0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937A18AA81960066D0AC /* Foundation.framework */; };
 		92D493A318AA81960066D0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937E18AA81960066D0AC /* UIKit.framework */; };
 		92D493AB18AA81960066D0AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92D493A918AA81960066D0AC /* InfoPlist.strings */; };
 		92D493AD18AA81960066D0AC /* LappyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D493AC18AA81960066D0AC /* LappyTests.m */; };
-		92D493B818AB73840066D0AC /* flappy.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D493B718AB73840066D0AC /* flappy.png */; };
 		92D493C318ACCFC90066D0AC /* FMMParallaxNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D493C218ACCFC90066D0AC /* FMMParallaxNode.m */; };
 		92D493C518ACD1AC0066D0AC /* flappybg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92D493C418ACD1AC0066D0AC /* flappybg.jpg */; };
+		92D493C718ACDD5A0066D0AC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D493C618ACDD5A0066D0AC /* AVFoundation.framework */; };
+		92D493CB18ACDDC30066D0AC /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 92D493CA18ACDDC30066D0AC /* jump.wav */; };
+		92D493CE18ACE37B0066D0AC /* bird1.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D493CC18ACE37B0066D0AC /* bird1.png */; };
+		92D493CF18ACE37B0066D0AC /* bird2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D493CD18ACE37B0066D0AC /* bird2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,17 +58,19 @@
 		92D4939218AA81960066D0AC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		92D4939418AA81960066D0AC /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		92D4939518AA81960066D0AC /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		92D4939718AA81960066D0AC /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		92D4939918AA81960066D0AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		92D4939F18AA81960066D0AC /* LappyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LappyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D493A018AA81960066D0AC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		92D493A818AA81960066D0AC /* LappyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LappyTests-Info.plist"; sourceTree = "<group>"; };
 		92D493AA18AA81960066D0AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92D493AC18AA81960066D0AC /* LappyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LappyTests.m; sourceTree = "<group>"; };
-		92D493B718AB73840066D0AC /* flappy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flappy.png; path = img/flappy.png; sourceTree = "<group>"; };
 		92D493C118ACCFC90066D0AC /* FMMParallaxNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMParallaxNode.h; sourceTree = "<group>"; };
 		92D493C218ACCFC90066D0AC /* FMMParallaxNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMMParallaxNode.m; sourceTree = "<group>"; };
 		92D493C418ACD1AC0066D0AC /* flappybg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flappybg.jpg; path = img/flappybg.jpg; sourceTree = "<group>"; };
+		92D493C618ACDD5A0066D0AC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		92D493CA18ACDDC30066D0AC /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = jump.wav; path = sound/jump.wav; sourceTree = "<group>"; };
+		92D493CC18ACE37B0066D0AC /* bird1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bird1.png; path = img/bird1.png; sourceTree = "<group>"; };
+		92D493CD18ACE37B0066D0AC /* bird2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bird2.png; path = img/bird2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D493C718ACDD5A0066D0AC /* AVFoundation.framework in Frameworks */,
 				92D4937D18AA81960066D0AC /* CoreGraphics.framework in Frameworks */,
 				92D4937F18AA81960066D0AC /* UIKit.framework in Frameworks */,
 				92D4938118AA81960066D0AC /* SpriteKit.framework in Frameworks */,
@@ -116,6 +121,7 @@
 		92D4937918AA81960066D0AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92D493C618ACDD5A0066D0AC /* AVFoundation.framework */,
 				92D4937A18AA81960066D0AC /* Foundation.framework */,
 				92D4937C18AA81960066D0AC /* CoreGraphics.framework */,
 				92D4937E18AA81960066D0AC /* UIKit.framework */,
@@ -128,9 +134,9 @@
 		92D4938218AA81960066D0AC /* Lappy */ = {
 			isa = PBXGroup;
 			children = (
+				92D493C818ACDDA20066D0AC /* Resources */,
 				92D493C118ACCFC90066D0AC /* FMMParallaxNode.h */,
 				92D493C218ACCFC90066D0AC /* FMMParallaxNode.m */,
-				92D493B618AB73770066D0AC /* images */,
 				92D4938B18AA81960066D0AC /* AppDelegate.h */,
 				92D4938C18AA81960066D0AC /* AppDelegate.m */,
 				92D4938E18AA81960066D0AC /* Main.storyboard */,
@@ -176,11 +182,28 @@
 		92D493B618AB73770066D0AC /* images */ = {
 			isa = PBXGroup;
 			children = (
-				92D4939718AA81960066D0AC /* Spaceship.png */,
 				92D493C418ACD1AC0066D0AC /* flappybg.jpg */,
-				92D493B718AB73840066D0AC /* flappy.png */,
+				92D493CC18ACE37B0066D0AC /* bird1.png */,
+				92D493CD18ACE37B0066D0AC /* bird2.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		92D493C818ACDDA20066D0AC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				92D493C918ACDDAE0066D0AC /* sound */,
+				92D493B618AB73770066D0AC /* images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		92D493C918ACDDAE0066D0AC /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				92D493CA18ACDDC30066D0AC /* jump.wav */,
+			);
+			name = sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +284,11 @@
 			files = (
 				92D4938718AA81960066D0AC /* InfoPlist.strings in Resources */,
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
-				92D4939818AA81960066D0AC /* Spaceship.png in Resources */,
+				92D493CB18ACDDC30066D0AC /* jump.wav in Resources */,
+				92D493CE18ACE37B0066D0AC /* bird1.png in Resources */,
 				92D4939018AA81960066D0AC /* Main.storyboard in Resources */,
 				92D493C518ACD1AC0066D0AC /* flappybg.jpg in Resources */,
-				92D493B818AB73840066D0AC /* flappy.png in Resources */,
+				92D493CF18ACE37B0066D0AC /* bird2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
