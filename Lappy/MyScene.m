@@ -8,7 +8,9 @@
 @import AVFoundation;
 
 @implementation MyScene {
-//	NSTimeInterval sinceTouch;
+	int score;
+	SKLabelNode *scoreLabel;
+
 	CGFloat screenWidth;
 	CGFloat screenHeight;
 	AVAudioPlayer* jumpSound;
@@ -35,6 +37,16 @@
 		// GameOver is false
 		gameStarted = NO;
 		GameOver = NO;
+
+		// score starts at 0
+		score = 0;
+		scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+		
+		scoreLabel.text = [NSString stringWithFormat:@"%i", score];
+		scoreLabel.fontSize = 30;
+		scoreLabel.position = CGPointMake(screenWidth / 2, screenHeight / 4 + screenHeight / 2);
+		scoreLabel.zPosition = 3.0;
+		[self addChild:scoreLabel];
 		
 		// Alloc Arrays
 		bottomPipes = [NSMutableArray array];
@@ -91,11 +103,11 @@
 		}
 		[_bird setPosition:CGPointMake(_bird.position.x, _bird.position.y + direction)];
 	}
-	
+
 	if(!GameOver) {
 		[ground update:currentTime];
 	}
-	
+
 	// Updating background scrolling
 	if(!GameOver && gameStarted) {
 		[background update:currentTime];
@@ -107,14 +119,23 @@
 				bottomPipe.isActive = NO;
 				[self generatePipe];
 			}
+			// Score
+			if(_bird.position.x > bottomPipe.position.x && bottomPipe.gavePoint == NO) {
+				bottomPipe.gavePoint = YES;
+				score++;
+				scoreLabel.text = [NSString stringWithFormat:@"%i", score];
+			}
+			// Remove pipe if it gets off the screen
 			if(bottomPipe.position.x + bottomPipe.size.width / 2 < 0) {
 				[bottomPipe removeFromParent];
 			}
 		}
-		
+
 		// Move the topPipes to the left
 		for(Obstacle *topPipe in topPipes) {
 			topPipe.position = CGPointMake(topPipe.position.x - 3, topPipe.position.y);
+
+			// Remove pipe if it gets off the screen
 			if(topPipe.position.x + topPipe.size.width / 2 < 0) {
 				[topPipe removeFromParent];
 			}
@@ -163,7 +184,7 @@
 
 	// Default position
 	_bird.position = CGPointMake((screenWidth / 2) - 85, screenHeight / 2);
-	_bird.zPosition = 3.0;
+	_bird.zPosition = 4.0;
 
 	// Adding bird to the layer
 	[self addChild:_bird];
@@ -194,6 +215,7 @@
 
 	Obstacle *somePipe = [Obstacle spriteNodeWithImageNamed:@"pipe"];
 	[somePipe setIsActive:YES];
+	[somePipe setGavePoint:NO];
 	somePipe.xScale = 0.20;
 	somePipe.yScale = 0.50;
 	somePipe.position = CGPointMake(screenWidth + somePipe.frame.size.width / 2, j);

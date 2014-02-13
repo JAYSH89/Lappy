@@ -7,4 +7,5 @@
 
 @interface Obstacle : SKSpriteNode
 @property (nonatomic) BOOL isActive;
+@property (nonatomic) BOOL gavePoint;
 @end
