@@ -92,24 +92,48 @@
 		[_bird setPosition:CGPointMake(_bird.position.x, _bird.position.y + direction)];
 	}
 	
+	if(!GameOver) {
+		[ground update:currentTime];
+	}
+	
 	// Updating background scrolling
 	if(!GameOver && gameStarted) {
 		[background update:currentTime];
-		[ground update:currentTime];
 
+		// Move the bottomPipes to the left
 		for(Obstacle *bottomPipe in bottomPipes) {
 			bottomPipe.position = CGPointMake(bottomPipe.position.x - 3, bottomPipe.position.y);
 			if(bottomPipe.position.x - bottomPipe.size.width / 2 < screenWidth / 2 && bottomPipe.isActive == YES) {
 				bottomPipe.isActive = NO;
 				[self generatePipe];
 			}
+			if(bottomPipe.position.x + bottomPipe.size.width / 2 < 0) {
+				[bottomPipe removeFromParent];
+			}
+		}
+		
+		// Move the topPipes to the left
+		for(Obstacle *topPipe in topPipes) {
+			topPipe.position = CGPointMake(topPipe.position.x - 3, topPipe.position.y);
+			if(topPipe.position.x + topPipe.size.width / 2 < 0) {
+				[topPipe removeFromParent];
+			}
 		}
 
-		// If bird hits object
+		// If bird hits bottomPipe object
 		for(SKSpriteNode *bottomPipe in bottomPipes) {
 			if(_bird.position.x + _bird.size.width / 2 > bottomPipe.position.x - bottomPipe.size.width / 2 &&
 				 _bird.position.x - _bird.size.width / 2 < bottomPipe.position.x + bottomPipe.size.width / 2 &&
 				 _bird.position.y < bottomPipe.position.y + bottomPipe.frame.size.height / 2) {
+				[self didCollide];
+			}
+		}
+		
+		// If bird hits TopPipe object
+		for(SKSpriteNode *pipeTop in topPipes) {
+			if(_bird.position.x + _bird.size.width / 2 > pipeTop.position.x - pipeTop.size.width / 2 &&
+				 _bird.position.x - _bird.size.width / 2 < pipeTop.position.x + pipeTop.size.width / 2 &&
+				 _bird.position.y + _bird.size.height / 2 > pipeTop.position.y - pipeTop.size.height / 2) {
 				[self didCollide];
 			}
 		}
@@ -161,14 +185,30 @@
 }
 
 -(void)generatePipe {
+	int i = arc4random() % 2;
+	int j = arc4random() % 100;
+	
+	if(i == 0 && j < 50) {
+		j = j * -1;
+	}
+
 	Obstacle *somePipe = [Obstacle spriteNodeWithImageNamed:@"pipe"];
 	[somePipe setIsActive:YES];
 	somePipe.xScale = 0.20;
 	somePipe.yScale = 0.50;
-	somePipe.position = CGPointMake(screenWidth + somePipe.frame.size.width / 2, screenHeight / 5);
+	somePipe.position = CGPointMake(screenWidth + somePipe.frame.size.width / 2, j);
 	somePipe.zPosition = 1.0;
 	[bottomPipes addObject:somePipe];
 	[self addChild:somePipe];
+	
+	Obstacle *pipeTop = [Obstacle spriteNodeWithImageNamed:@"pipeTop"];
+	[pipeTop setIsActive:YES];
+	pipeTop.xScale = 0.20;
+	pipeTop.yScale = 0.50;
+	pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 100);
+	pipeTop.zPosition = 1.0;
+	[topPipes addObject:pipeTop];
+	[self addChild:pipeTop];
 }
 
 -(void)createGround {

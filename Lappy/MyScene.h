@@ -9,9 +9,4 @@
 
 @property SKSpriteNode *bird;
 
-@property SKSpriteNode *pipeOneBottom;
-@property SKSpriteNode *pipeOneTop;
-@property SKSpriteNode *pipeTwoBottom;
-@property SKSpriteNode *pipeTwoTop;
-
 @end

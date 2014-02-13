@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9280857118AD053A001F2829 /* pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280856F18AD053A001F2829 /* pipe.png */; };
 		9280857C18AD5413001F2829 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9280857B18AD5413001F2829 /* Obstacle.m */; };
+		9280857E18AD57D5001F2829 /* pipeTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280857D18AD57D5001F2829 /* pipeTop.png */; };
 		92D4937B18AA81960066D0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937A18AA81960066D0AC /* Foundation.framework */; };
 		92D4937D18AA81960066D0AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937C18AA81960066D0AC /* CoreGraphics.framework */; };
 		92D4937F18AA81960066D0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937E18AA81960066D0AC /* UIKit.framework */; };
@@ -48,6 +49,7 @@
 		9280856F18AD053A001F2829 /* pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipe.png; path = img/pipe.png; sourceTree = "<group>"; };
 		9280857A18AD5413001F2829 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
 		9280857B18AD5413001F2829 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
+		9280857D18AD57D5001F2829 /* pipeTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipeTop.png; path = img/pipeTop.png; sourceTree = "<group>"; };
 		92D4937718AA81960066D0AC /* Lappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D4937A18AA81960066D0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		92D4937C18AA81960066D0AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,6 +205,7 @@
 				92D493CC18ACE37B0066D0AC /* bird1.png */,
 				92D493CD18ACE37B0066D0AC /* bird2.png */,
 				9280856F18AD053A001F2829 /* pipe.png */,
+				9280857D18AD57D5001F2829 /* pipeTop.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D4938718AA81960066D0AC /* InfoPlist.strings in Resources */,
+				9280857E18AD57D5001F2829 /* pipeTop.png in Resources */,
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
 				9280857118AD053A001F2829 /* pipe.png in Resources */,
 				92D493CB18ACDDC30066D0AC /* jump.wav in Resources */,
