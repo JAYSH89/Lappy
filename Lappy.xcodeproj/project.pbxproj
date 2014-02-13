@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9280857118AD053A001F2829 /* pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280856F18AD053A001F2829 /* pipe.png */; };
+		9280857218AD053A001F2829 /* pipeTopNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280857018AD053A001F2829 /* pipeTopNormal.png */; };
 		92D4937B18AA81960066D0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937A18AA81960066D0AC /* Foundation.framework */; };
 		92D4937D18AA81960066D0AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937C18AA81960066D0AC /* CoreGraphics.framework */; };
 		92D4937F18AA81960066D0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937E18AA81960066D0AC /* UIKit.framework */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9280856F18AD053A001F2829 /* pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipe.png; path = img/pipe.png; sourceTree = "<group>"; };
+		9280857018AD053A001F2829 /* pipeTopNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipeTopNormal.png; path = img/pipeTopNormal.png; sourceTree = "<group>"; };
 		92D4937718AA81960066D0AC /* Lappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D4937A18AA81960066D0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		92D4937C18AA81960066D0AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -188,6 +192,8 @@
 				92D493C418ACD1AC0066D0AC /* flappybg.jpg */,
 				92D493CC18ACE37B0066D0AC /* bird1.png */,
 				92D493CD18ACE37B0066D0AC /* bird2.png */,
+				9280856F18AD053A001F2829 /* pipe.png */,
+				9280857018AD053A001F2829 /* pipeTopNormal.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -287,6 +293,8 @@
 			files = (
 				92D4938718AA81960066D0AC /* InfoPlist.strings in Resources */,
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
+				9280857218AD053A001F2829 /* pipeTopNormal.png in Resources */,
+				9280857118AD053A001F2829 /* pipe.png in Resources */,
 				92D493CB18ACDDC30066D0AC /* jump.wav in Resources */,
 				92D493CE18ACE37B0066D0AC /* bird1.png in Resources */,
 				92D493D118ACECA20066D0AC /* ground.png in Resources */,
@@ -526,6 +534,7 @@
 				92D493B218AA81960066D0AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92D493B318AA81960066D0AC /* Build configuration list for PBXNativeTarget "LappyTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +543,7 @@
 				92D493B518AA81960066D0AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
