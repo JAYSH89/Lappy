@@ -10,7 +10,10 @@
 @implementation MyScene {
 //	NSTimeInterval sinceTouch;
 	AVAudioPlayer* jumpSound;
+
 	FMMParallaxNode *background;
+	FMMParallaxNode *ground;
+
 	BOOL gameStarted;
 	BOOL GameOver;
 }
@@ -28,12 +31,20 @@
 
 		// Adding background
 		NSArray *backgroudNames = @[@"flappybg.jpg", @"flappybg.jpg"];
-		CGSize planetSizes = CGSizeMake(_screenWidth, _screenHeight);
+		CGSize backgroundSize = CGSizeMake(_screenWidth, _screenHeight);
 		background = [[FMMParallaxNode alloc] initWithBackgrounds:backgroudNames
-																												 size:planetSizes
-																				 pointsPerSecondSpeed:80.0];
+																												 size:backgroundSize
+																				 pointsPerSecondSpeed:20.0];
 		background.position = CGPointMake(0, 0);
 		[self addChild:background];
+		
+		NSArray *groundNames = @[@"ground.png", @"ground.png"];
+		CGSize groundSize = CGSizeMake(_screenWidth, _screenHeight / 5);
+		ground = [[FMMParallaxNode alloc] initWithBackgrounds:groundNames
+																												 size:groundSize
+																				 pointsPerSecondSpeed:80.0];
+		ground.position = CGPointMake(0, 0);
+		[self addChild:ground];
 
 		// World Gravity
 		[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
@@ -56,7 +67,6 @@
 		NSError *error;
 		NSURL *backgroundMusicURL = [[NSBundle mainBundle] URLForResource:@"jump" withExtension:@"wav"];
 		jumpSound = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
-//		jumpSound.numberOfLoops = 1;
 		[jumpSound prepareToPlay];
 	}
 	return self;
@@ -81,6 +91,7 @@
 	// Updating background scrolling
 	if(!GameOver) {
 		[background update:currentTime];
+		[ground update:currentTime];
 	}
 
 	// Maximize upwards speed
