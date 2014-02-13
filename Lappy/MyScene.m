@@ -37,7 +37,8 @@
 																				 pointsPerSecondSpeed:20.0];
 		background.position = CGPointMake(0, 0);
 		[self addChild:background];
-		
+
+		// Ground
 		NSArray *groundNames = @[@"ground.png", @"ground.png"];
 		CGSize groundSize = CGSizeMake(_screenWidth, _screenHeight / 5);
 		ground = [[FMMParallaxNode alloc] initWithBackgrounds:groundNames
@@ -59,10 +60,10 @@
 
 		// Default position
 		_bird.position = CGPointMake((_screenWidth / 2) - 85, _screenHeight / 2);
-		
+
 		// Adding bird to the layer
 		[self addChild:_bird];
-		
+
 		// Sound
 		NSError *error;
 		NSURL *backgroundMusicURL = [[NSBundle mainBundle] URLForResource:@"jump" withExtension:@"wav"];
@@ -74,14 +75,15 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	/* Called when a touch begins */
+	if(!GameOver) {
+		for (UITouch *touch in touches) {
+			// Moving bird upwards when you tap screen
+			[_bird.physicsBody applyImpulse:CGVectorMake(0, 10000.f)];
+			[_bird setTexture:[SKTexture textureWithImageNamed:@"bird2"]];
 
-	for (UITouch *touch in touches) {
-		// Moving bird upwards when you tap screen
-		[_bird.physicsBody applyImpulse:CGVectorMake(0, 10000.f)];
-		[_bird setTexture:[SKTexture textureWithImageNamed:@"bird2"]];
-
-		[NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(openWings) userInfo:nil repeats:NO];
-		[jumpSound play];
+			[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(openWings) userInfo:nil repeats:NO];
+			[jumpSound play];
+		}
 	}
 }
 
@@ -99,7 +101,7 @@
 	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
 
 	// If bird hits bottom..
-	if(_bird.position.y <= _bird.size.height) {
+	if(_bird.position.y <= (_screenHeight / 4) - 10) {
 		_bird.physicsBody.affectedByGravity = NO;
 		_bird.physicsBody.dynamic = NO;
 		GameOver = YES;
