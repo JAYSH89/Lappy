@@ -4,19 +4,32 @@
 //  Copyright (c) 2014 Sanjay Sheombar. All rights reserved.
 
 #import "MyScene.h"
+#import "FMMParallaxNode.h"
 
 @implementation MyScene {
-	NSTimeInterval sinceTouch;
+//	NSTimeInterval sinceTouch;
+	FMMParallaxNode *background;
+	BOOL GameOver;
 }
 
 -(id)initWithSize:(CGSize)size {    
 	if (self = [super initWithSize:size]) {
 		/* Setup your scene here */
-
-		self.backgroundColor = [SKColor colorWithRed:255 green:255 blue:255 alpha:1.0];
 		CGRect screenRect = [[UIScreen mainScreen] bounds];
 		_screenWidth = screenRect.size.width;
 		_screenHeight = screenRect.size.height;
+
+		// GameOver is false
+		GameOver = NO;
+
+		// Adding background
+		NSArray *backgroudNames = @[@"flappybg.jpg", @"flappybg.jpg"];
+		CGSize planetSizes = CGSizeMake(_screenWidth, _screenHeight);
+		background = [[FMMParallaxNode alloc] initWithBackgrounds:backgroudNames
+																												 size:planetSizes
+																				 pointsPerSecondSpeed:80.0];
+		background.position = CGPointMake(0, 0);
+		[self addChild:background];
 
 		// World Gravity
 		[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
@@ -32,8 +45,9 @@
 		// Scaling the bird down + Default position
 		_bird.xScale = 0.20;
 		_bird.yScale = 0.20;
-		_bird.position = CGPointMake((_screenWidth / 2) - 65, _screenHeight / 2);
+		_bird.position = CGPointMake((_screenWidth / 2) - 85, _screenHeight / 2);
 		
+		// Adding bird to the layer
 		[self addChild:_bird];
 	}
 	return self;
@@ -43,9 +57,13 @@
 	/* Called when a touch begins */
 
 	for (UITouch *touch in touches) {
+		// Moving bird upwards when you tap screen
 		[_bird.physicsBody applyImpulse:CGVectorMake(0, 10000.f)];
-		[_bird.physicsBody applyAngularImpulse:1000.f];
-		sinceTouch = 0.f;
+
+		// Rotating bird upwards when you tap screen
+//		[_bird.physicsBody applyAngularImpulse:1000.f];
+//		sinceTouch = 0.f;
+
 //		CGPoint location = [touch locationInNode:self];
 //		SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
 //		sprite.position = location;
@@ -57,29 +75,35 @@
 
 -(void)update:(CFTimeInterval)currentTime {
 	/* Called before each frame is rendered */
+	
+	// Updating background scrolling
+	if(!GameOver) {
+		[background update:currentTime];
+	}
 
 	// Maximize upwards speed
 	float yVelocity = CLAMP(_bird.physicsBody.velocity.dy, -1 * MAXFLOAT, 250.f);
 	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
 
 	// Rotation of the bird
-	sinceTouch += currentTime;
-
-	_bird.zRotation = CLAMP(_bird.zRotation, -30.f, 90.f);
-
-	if (_bird.physicsBody.allowsRotation) {
-		float angularVelocity = CLAMP(_bird.physicsBody.angularVelocity, -2.f, 1.f);
-		_bird.physicsBody.angularVelocity = angularVelocity;
-	}
-
-	if ((sinceTouch > 0.5f)) {
-		[_bird.physicsBody applyAngularImpulse:-4000.f * currentTime];
-	}
+//	sinceTouch += currentTime;
+//
+//	_bird.zRotation = CLAMP(_bird.zRotation, -30.f, 90.f);
+//
+//	if (_bird.physicsBody.allowsRotation) {
+//		float angularVelocity = CLAMP(_bird.physicsBody.angularVelocity, -2.f, 1.f);
+//		_bird.physicsBody.angularVelocity = angularVelocity;
+//	}
+//
+//	if ((sinceTouch > 0.5f)) {
+//		[_bird.physicsBody applyAngularImpulse:-4000.f * currentTime];
+//	}
 
 	// If bird hits bottom..
 	if(_bird.position.y <= _bird.size.height) {
 		_bird.physicsBody.affectedByGravity = NO;
 		_bird.physicsBody.dynamic = NO;
+		GameOver = YES;
 	}
 	
 }

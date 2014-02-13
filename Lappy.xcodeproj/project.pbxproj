@@ -25,6 +25,8 @@
 		92D493AB18AA81960066D0AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92D493A918AA81960066D0AC /* InfoPlist.strings */; };
 		92D493AD18AA81960066D0AC /* LappyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D493AC18AA81960066D0AC /* LappyTests.m */; };
 		92D493B818AB73840066D0AC /* flappy.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D493B718AB73840066D0AC /* flappy.png */; };
+		92D493C318ACCFC90066D0AC /* FMMParallaxNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D493C218ACCFC90066D0AC /* FMMParallaxNode.m */; };
+		92D493C518ACD1AC0066D0AC /* flappybg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92D493C418ACD1AC0066D0AC /* flappybg.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		92D493AA18AA81960066D0AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92D493AC18AA81960066D0AC /* LappyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LappyTests.m; sourceTree = "<group>"; };
 		92D493B718AB73840066D0AC /* flappy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flappy.png; path = img/flappy.png; sourceTree = "<group>"; };
+		92D493C118ACCFC90066D0AC /* FMMParallaxNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMMParallaxNode.h; sourceTree = "<group>"; };
+		92D493C218ACCFC90066D0AC /* FMMParallaxNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMMParallaxNode.m; sourceTree = "<group>"; };
+		92D493C418ACD1AC0066D0AC /* flappybg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flappybg.jpg; path = img/flappybg.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +128,8 @@
 		92D4938218AA81960066D0AC /* Lappy */ = {
 			isa = PBXGroup;
 			children = (
+				92D493C118ACCFC90066D0AC /* FMMParallaxNode.h */,
+				92D493C218ACCFC90066D0AC /* FMMParallaxNode.m */,
 				92D493B618AB73770066D0AC /* images */,
 				92D4938B18AA81960066D0AC /* AppDelegate.h */,
 				92D4938C18AA81960066D0AC /* AppDelegate.m */,
@@ -170,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				92D4939718AA81960066D0AC /* Spaceship.png */,
+				92D493C418ACD1AC0066D0AC /* flappybg.jpg */,
 				92D493B718AB73840066D0AC /* flappy.png */,
 			);
 			name = images;
@@ -255,6 +263,7 @@
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
 				92D4939818AA81960066D0AC /* Spaceship.png in Resources */,
 				92D4939018AA81960066D0AC /* Main.storyboard in Resources */,
+				92D493C518ACD1AC0066D0AC /* flappybg.jpg in Resources */,
 				92D493B818AB73840066D0AC /* flappy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +286,7 @@
 				92D4939618AA81960066D0AC /* MyScene.m in Sources */,
 				92D4939318AA81960066D0AC /* ViewController.m in Sources */,
 				92D4938D18AA81960066D0AC /* AppDelegate.m in Sources */,
+				92D493C318ACCFC90066D0AC /* FMMParallaxNode.m in Sources */,
 				92D4938918AA81960066D0AC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
