@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9280857118AD053A001F2829 /* pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280856F18AD053A001F2829 /* pipe.png */; };
-		9280857218AD053A001F2829 /* pipeTopNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280857018AD053A001F2829 /* pipeTopNormal.png */; };
+		9280857C18AD5413001F2829 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9280857B18AD5413001F2829 /* Obstacle.m */; };
 		92D4937B18AA81960066D0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937A18AA81960066D0AC /* Foundation.framework */; };
 		92D4937D18AA81960066D0AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937C18AA81960066D0AC /* CoreGraphics.framework */; };
 		92D4937F18AA81960066D0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937E18AA81960066D0AC /* UIKit.framework */; };
@@ -46,7 +46,8 @@
 
 /* Begin PBXFileReference section */
 		9280856F18AD053A001F2829 /* pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipe.png; path = img/pipe.png; sourceTree = "<group>"; };
-		9280857018AD053A001F2829 /* pipeTopNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipeTopNormal.png; path = img/pipeTopNormal.png; sourceTree = "<group>"; };
+		9280857A18AD5413001F2829 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
+		9280857B18AD5413001F2829 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
 		92D4937718AA81960066D0AC /* Lappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D4937A18AA81960066D0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		92D4937C18AA81960066D0AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -105,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9280857918AD53FE001F2829 /* GameObject */ = {
+			isa = PBXGroup;
+			children = (
+				9280857A18AD5413001F2829 /* Obstacle.h */,
+				9280857B18AD5413001F2829 /* Obstacle.m */,
+			);
+			name = GameObject;
+			sourceTree = "<group>";
+		};
 		92D4936E18AA81960066D0AC = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +203,6 @@
 				92D493CC18ACE37B0066D0AC /* bird1.png */,
 				92D493CD18ACE37B0066D0AC /* bird2.png */,
 				9280856F18AD053A001F2829 /* pipe.png */,
-				9280857018AD053A001F2829 /* pipeTopNormal.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -201,6 +210,7 @@
 		92D493C818ACDDA20066D0AC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9280857918AD53FE001F2829 /* GameObject */,
 				92D493C918ACDDAE0066D0AC /* sound */,
 				92D493B618AB73770066D0AC /* images */,
 			);
@@ -293,7 +303,6 @@
 			files = (
 				92D4938718AA81960066D0AC /* InfoPlist.strings in Resources */,
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
-				9280857218AD053A001F2829 /* pipeTopNormal.png in Resources */,
 				9280857118AD053A001F2829 /* pipe.png in Resources */,
 				92D493CB18ACDDC30066D0AC /* jump.wav in Resources */,
 				92D493CE18ACE37B0066D0AC /* bird1.png in Resources */,
@@ -323,6 +332,7 @@
 				92D4939318AA81960066D0AC /* ViewController.m in Sources */,
 				92D4938D18AA81960066D0AC /* AppDelegate.m in Sources */,
 				92D493C318ACCFC90066D0AC /* FMMParallaxNode.m in Sources */,
+				9280857C18AD5413001F2829 /* Obstacle.m in Sources */,
 				92D4938918AA81960066D0AC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

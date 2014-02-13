@@ -15,9 +15,13 @@
 	
 	FMMParallaxNode *background;
 	FMMParallaxNode *ground;
+	
+	NSMutableArray *bottomPipes;
+	NSMutableArray *topPipes;
 
 	BOOL gameStarted;
 	BOOL GameOver;
+	float direction;
 }
 
 -(id)initWithSize:(CGSize)size {    
@@ -31,15 +35,23 @@
 		// GameOver is false
 		gameStarted = NO;
 		GameOver = NO;
+		
+		// Alloc Arrays
+		bottomPipes = [NSMutableArray array];
+		topPipes = [NSMutableArray array];
 
 		[self createBackground];
+		[self generatePipe];
 		[self createGround];
 		[self createBird];
-		
+
 		// World Gravity
 		[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
 
 		[self prepareSound];
+		
+		// gliding
+		direction = 1;
 	}
 	return self;
 }
@@ -61,6 +73,9 @@
 			[_bird setTexture:[SKTexture textureWithImageNamed:@"bird2"]];
 
 			[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(openWings) userInfo:nil repeats:NO];
+			if([jumpSound isPlaying]) {
+				[jumpSound stop];
+			}
 			[jumpSound play];
 		}
 	}
@@ -68,38 +83,64 @@
 
 -(void)update:(CFTimeInterval)currentTime {
 	/* Called before each frame is rendered */
-	
-	// Updating background scrolling
-	if(!GameOver) {
-		[background update:currentTime];
-		[ground update:currentTime];
+
+	// Gliding of the bird
+	if(gameStarted == NO) {
+		if(_bird.position.y < 220 || _bird.position.y >= 260) {
+			direction = direction * - 1;
+		}
+		[_bird setPosition:CGPointMake(_bird.position.x, _bird.position.y + direction)];
 	}
 	
-	// Maximize upwards speed
-	float yVelocity = CLAMP(_bird.physicsBody.velocity.dy, -1 * MAXFLOAT, 250.f);
-	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
-	
-	// If bird hits bottom..
-	if(_bird.position.y <= (screenHeight / 4) - 10) {
+	// Updating background scrolling
+	if(!GameOver && gameStarted) {
+		[background update:currentTime];
+		[ground update:currentTime];
+
+		for(Obstacle *bottomPipe in bottomPipes) {
+			bottomPipe.position = CGPointMake(bottomPipe.position.x - 3, bottomPipe.position.y);
+			if(bottomPipe.position.x - bottomPipe.size.width / 2 < screenWidth / 2 && bottomPipe.isActive == YES) {
+				bottomPipe.isActive = NO;
+				[self generatePipe];
+			}
+		}
+
+		// If bird hits object
+		for(SKSpriteNode *bottomPipe in bottomPipes) {
+			if(_bird.position.x + _bird.size.width / 2 > bottomPipe.position.x - bottomPipe.size.width / 2 &&
+				 _bird.position.x - _bird.size.width / 2 < bottomPipe.position.x + bottomPipe.size.width / 2 &&
+				 _bird.position.y < bottomPipe.position.y + bottomPipe.frame.size.height / 2) {
+				[self didCollide];
+			}
+		}
+	}
+
+	// If bird hits Ground..
+	if(_bird.position.y <= screenHeight / 5 + (_bird.size.height / 2)) {
 		_bird.physicsBody.affectedByGravity = NO;
 		_bird.physicsBody.dynamic = NO;
 		GameOver = YES;
 	}
+
+	// Maximize upwards speed
+	float yVelocity = CLAMP(_bird.physicsBody.velocity.dy, -1 * MAXFLOAT, 250.f);
+	_bird.physicsBody.velocity = CGVectorMake(0, yVelocity);
 }
 
 #pragma mark GameObjects
 
 - (void)createBird {
 	_bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird1"];
-	
+
 	// Adding physics body to bird
-	_bird.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_bird.frame.size.width];
+	_bird.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_bird.frame.size];
 	_bird.physicsBody.affectedByGravity = NO;
 	_bird.physicsBody.dynamic = NO;
-	
+
 	// Default position
 	_bird.position = CGPointMake((screenWidth / 2) - 85, screenHeight / 2);
-	
+	_bird.zPosition = 3.0;
+
 	// Adding bird to the layer
 	[self addChild:_bird];
 }
@@ -109,15 +150,25 @@
 }
 
 -(void)createBackground {
-	[self.physicsWorld setContactDelegate:self];
-	
 	NSArray *backgroudNames = @[@"flappybg.jpg", @"flappybg.jpg"];
 	CGSize backgroundSize = CGSizeMake(screenWidth, screenHeight);
 	background = [[FMMParallaxNode alloc] initWithBackgrounds:backgroudNames
 																											 size:backgroundSize
 																			 pointsPerSecondSpeed:20.0];
 	background.position = CGPointMake(0, 0);
+	background.zPosition = 0.0;
 	[self addChild:background];
+}
+
+-(void)generatePipe {
+	Obstacle *somePipe = [Obstacle spriteNodeWithImageNamed:@"pipe"];
+	[somePipe setIsActive:YES];
+	somePipe.xScale = 0.20;
+	somePipe.yScale = 0.50;
+	somePipe.position = CGPointMake(screenWidth + somePipe.frame.size.width / 2, screenHeight / 5);
+	somePipe.zPosition = 1.0;
+	[bottomPipes addObject:somePipe];
+	[self addChild:somePipe];
 }
 
 -(void)createGround {
@@ -127,6 +178,7 @@
 																									 size:groundSize
 																	 pointsPerSecondSpeed:80.0];
 	ground.position = CGPointMake(0, 0);
+	ground.zPosition = 2.0;
 	[self addChild:ground];
 }
 
@@ -137,14 +189,9 @@
 	[jumpSound prepareToPlay];
 }
 
-#pragma mark SKContactDelegate
-
--(void)didBeginContact:(SKPhysicsContact *)contact {
-	
-}
-
--(void)didEndContact:(SKPhysicsContact *)contact {
-	
+- (void)didCollide {
+	NSLog(@"Boink");
+	GameOver = YES;
 }
 
 @end
