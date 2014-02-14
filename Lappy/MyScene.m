@@ -14,10 +14,10 @@
 	CGFloat screenWidth;
 	CGFloat screenHeight;
 	AVAudioPlayer* jumpSound;
-	
+
 	FMMParallaxNode *background;
 	FMMParallaxNode *ground;
-	
+
 	NSMutableArray *bottomPipes;
 	NSMutableArray *topPipes;
 
@@ -34,36 +34,7 @@
 		screenWidth = screenRect.size.width;
 		screenHeight = screenRect.size.height;
 
-		// GameOver is false
-		gameStarted = NO;
-		GameOver = NO;
-
-		// Score starts at 0
-		score = 0;
-		scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-		
-		scoreLabel.text = [NSString stringWithFormat:@"%i", score];
-		scoreLabel.fontSize = 30;
-		scoreLabel.position = CGPointMake(screenWidth / 2, screenHeight / 4 + screenHeight / 2);
-		scoreLabel.zPosition = 3.0;
-		[self addChild:scoreLabel];
-		
-		// Alloc Arrays
-		bottomPipes = [NSMutableArray array];
-		topPipes = [NSMutableArray array];
-
-		[self createBackground];
-		[self generatePipe];
-		[self createGround];
-		[self createBird];
-
-		// World Gravity
-		[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
-
-		[self prepareSound];
-		
-		// Gliding
-		direction = 1;
+		[self startGame];
 	}
 	return self;
 }
@@ -90,6 +61,11 @@
 			}
 			[jumpSound play];
 		}
+	}
+	if(GameOver) {
+		[self removeAllActions];
+		[self removeAllChildren];
+		[self startGame];
 	}
 }
 
@@ -180,6 +156,38 @@
 }
 
 #pragma mark GameObjects
+- (void)startGame {
+	// GameOver is false
+	gameStarted = NO;
+	GameOver = NO;
+	
+	// Score starts at 0
+	score = 0;
+	scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+	
+	scoreLabel.text = [NSString stringWithFormat:@"%i", score];
+	scoreLabel.fontSize = 30;
+	scoreLabel.position = CGPointMake(screenWidth / 2, screenHeight / 4 + screenHeight / 2);
+	scoreLabel.zPosition = 3.0;
+	[self addChild:scoreLabel];
+	
+	// Alloc Arrays
+	bottomPipes = [NSMutableArray array];
+	topPipes = [NSMutableArray array];
+	
+	[self createBackground];
+	[self generatePipe];
+	[self createGround];
+	[self createBird];
+	
+	// World Gravity
+	[self.physicsWorld setGravity:CGVectorMake(0.0, -4.0)];
+	
+	[self prepareSound];
+	
+	// Gliding
+	direction = 1;
+}
 
 - (void)createBird {
 	_bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird1"];
@@ -240,7 +248,7 @@
 	pipeTop.xScale = 0.20;
 	pipeTop.yScale = 0.50;
 	if(IS_IPHONE_5) {
-		pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 80);
+		pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 90);
 	} else {
 		pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 100);
 	}
@@ -254,7 +262,7 @@
 	CGSize groundSize = CGSizeMake(screenWidth, screenHeight / 5);
 	ground = [[FMMParallaxNode alloc] initWithBackgrounds:groundNames
 																									 size:groundSize
-																	 pointsPerSecondSpeed:80.0];
+																	 pointsPerSecondSpeed:90.0];
 	ground.position = CGPointMake(0, 0);
 	ground.zPosition = 2.0;
 	[self addChild:ground];
@@ -268,7 +276,6 @@
 }
 
 - (void)didCollide {
-	NSLog(@"Boink");
 	_bird.zRotation = 180;
 	GameOver = YES;
 }
