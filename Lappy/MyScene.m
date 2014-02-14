@@ -38,7 +38,7 @@
 		gameStarted = NO;
 		GameOver = NO;
 
-		// score starts at 0
+		// Score starts at 0
 		score = 0;
 		scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 		
@@ -62,7 +62,7 @@
 
 		[self prepareSound];
 		
-		// gliding
+		// Gliding
 		direction = 1;
 	}
 	return self;
@@ -98,10 +98,17 @@
 
 	// Gliding of the bird
 	if(gameStarted == NO) {
-		if(_bird.position.y < 220 || _bird.position.y >= 260) {
-			direction = direction * - 1;
+		if(IS_IPHONE_5) {
+			if(_bird.position.y < 264|| _bird.position.y >= 304) {
+				direction = direction * - 1;
+			}
+			[_bird setPosition:CGPointMake(_bird.position.x, _bird.position.y + direction)];
+		} else {
+			if(_bird.position.y < 220 || _bird.position.y >= 260) {
+				direction = direction * - 1;
+			}
+			[_bird setPosition:CGPointMake(_bird.position.x, _bird.position.y + direction)];
 		}
-		[_bird setPosition:CGPointMake(_bird.position.x, _bird.position.y + direction)];
 	}
 
 	if(!GameOver) {
@@ -207,12 +214,17 @@
 
 -(void)generatePipe {
 	int i = arc4random() % 2;
-	int j = arc4random() % 100;
-	
-	if(i == 0 && j < 50) {
-		j = j * -1;
-	}
+	int j = arc4random() % 120;
 
+	if(IS_IPHONE_5) {
+		if(i == 0 && j < 40) {
+			j = j * -1;
+		}
+	} else {
+		if(i == 0 && j < 50) {
+			j = j * -1;
+		}
+	}
 	Obstacle *somePipe = [Obstacle spriteNodeWithImageNamed:@"pipe"];
 	[somePipe setIsActive:YES];
 	[somePipe setGavePoint:NO];
@@ -227,7 +239,11 @@
 	[pipeTop setIsActive:YES];
 	pipeTop.xScale = 0.20;
 	pipeTop.yScale = 0.50;
-	pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 100);
+	if(IS_IPHONE_5) {
+		pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 80);
+	} else {
+		pipeTop.position = CGPointMake(somePipe.position.x +2, somePipe.position.y + (somePipe.size.height) + 100);
+	}
 	pipeTop.zPosition = 1.0;
 	[topPipes addObject:pipeTop];
 	[self addChild:pipeTop];
@@ -253,6 +269,7 @@
 
 - (void)didCollide {
 	NSLog(@"Boink");
+	_bird.zRotation = 180;
 	GameOver = YES;
 }
 
