@@ -11,6 +11,7 @@
 		9280857C18AD5413001F2829 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9280857B18AD5413001F2829 /* Obstacle.m */; };
 		9280857E18AD57D5001F2829 /* pipeTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 9280857D18AD57D5001F2829 /* pipeTop.png */; };
 		928D7ACC18AE674900A4F756 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D7ACB18AE674900A4F756 /* MenuViewController.m */; };
+		928D7ACE18AF5BBC00A4F756 /* point.wav in Resources */ = {isa = PBXBuildFile; fileRef = 928D7ACD18AF5BBC00A4F756 /* point.wav */; };
 		92D4937B18AA81960066D0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937A18AA81960066D0AC /* Foundation.framework */; };
 		92D4937D18AA81960066D0AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937C18AA81960066D0AC /* CoreGraphics.framework */; };
 		92D4937F18AA81960066D0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D4937E18AA81960066D0AC /* UIKit.framework */; };
@@ -53,6 +54,7 @@
 		9280857D18AD57D5001F2829 /* pipeTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pipeTop.png; path = img/pipeTop.png; sourceTree = "<group>"; };
 		928D7ACA18AE674900A4F756 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		928D7ACB18AE674900A4F756 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		928D7ACD18AF5BBC00A4F756 /* point.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = point.wav; path = sound/point.wav; sourceTree = "<group>"; };
 		92D4937718AA81960066D0AC /* Lappy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lappy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D4937A18AA81960066D0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		92D4937C18AA81960066D0AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				92D493CA18ACDDC30066D0AC /* jump.wav */,
+				928D7ACD18AF5BBC00A4F756 /* point.wav */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				92D4939A18AA81960066D0AC /* Images.xcassets in Resources */,
 				9280857118AD053A001F2829 /* pipe.png in Resources */,
 				92D493CB18ACDDC30066D0AC /* jump.wav in Resources */,
+				928D7ACE18AF5BBC00A4F756 /* point.wav in Resources */,
 				92D493CE18ACE37B0066D0AC /* bird1.png in Resources */,
 				92D493D118ACECA20066D0AC /* ground.png in Resources */,
 				92D4939018AA81960066D0AC /* Main.storyboard in Resources */,

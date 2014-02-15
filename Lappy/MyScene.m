@@ -14,6 +14,7 @@
 	CGFloat screenWidth;
 	CGFloat screenHeight;
 	AVAudioPlayer* jumpSound;
+	AVAudioPlayer* pointSound;
 
 	FMMParallaxNode *background;
 	FMMParallaxNode *ground;
@@ -106,6 +107,7 @@
 			if(_bird.position.x > bottomPipe.position.x && bottomPipe.gavePoint == NO) {
 				bottomPipe.gavePoint = YES;
 				score++;
+				[pointSound play];
 				scoreLabel.text = [NSString stringWithFormat:@"%i", score];
 			}
 			// Remove pipe if it gets off the screen
@@ -271,8 +273,11 @@
 -(void)prepareSound {
 	NSError *error;
 	NSURL *backgroundMusicURL = [[NSBundle mainBundle] URLForResource:@"jump" withExtension:@"wav"];
+	NSURL *pointMusicURL = [[NSBundle mainBundle] URLForResource:@"point" withExtension:@"wav"];
 	jumpSound = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
+	pointSound = [[AVAudioPlayer alloc] initWithContentsOfURL:pointMusicURL error:&error];
 	[jumpSound prepareToPlay];
+	[pointSound prepareToPlay];
 }
 
 - (void)didCollide {
